@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="image">
+      <img src="images/books.jpg">
+    </div>
+    <div class="text">
+      <h1>Library Management System.</h1>
+    </div>
+    <div class="image">
+      <img src="images/books.jpg">
+    </div>
+  </div>
+
+  <!-- Book Catalog Section -->
+  <div id="bookList">
+    <section id="book-management-section">
+      
+  <div class="container">
+    <div class="bookImage">
+      <img src="images/bc.jpg">
+    </div>
+    <div class="bookText">
+      <h2>Book Catalog</h2>
+    </div>
+    <div class="bookImage">
+      <img src="images/bc.jpg">
+    </div>
+  </div>
+
+      <!-- Add Book Form -->
+      <form id="addBookForm">
+          <h3>Add New Book</h3>
+          <input type="text" id="addBookID" placeholder="Book ID" required>
+          <input type="text" id="addBookTitle" placeholder="Title" required>
+          <input type="text" id="addBookAuthor" placeholder="Author" required>
+          <input type="text" id="addBookISBN" placeholder="ISBN" required>
+          <input type="text" id="addBookGenre" placeholder="Genre" required>
+          <input type="number" id="addBookYear" placeholder="Publication Year" required>
+          <button type="submit">Add Book</button>
+      </form>
+
+      <!-- Update Book Form -->
+      <form id="updateBookForm">
+          <h3>Update Book Information</h3>
+          <input type="number" id="updateBookId" placeholder="Book ID" required>
+          <input type="text" id="updateBookTitle" placeholder="Updated Title">
+          <input type="text" id="updateBookAuthor" placeholder="Updated Author">
+          <input type="text" id="updateBookISBN" placeholder="Updated ISBN">
+          <input type="text" id="updateBookGenre" placeholder="Updated Genre">
+          <input type="number" id="updateBookYear" placeholder="Updated Publication Year">
+          <button type="submit">Update Book</button>
+      </form>
+
+      <!-- Delete Book Form -->
+      <form id="deleteBookForm">
+          <h3>Delete Book</h3>
+          <input type="number" id="deleteBookId" placeholder="Book ID" required>
+          <button type="submit">Delete Book</button>
+      </form>
+  </section>
+  </div>
+
+  <br><br>
+
+  <!-- User Management Section -->
+  <div id="userList">
+  <section id="user-management">
+    <div class="container">
+      <div class="userImage">
+        <img src="images/users.png">
+      </div>
+      <div class="userText">
+        <h2>User Management</h2>
+      </div>
+      <div class="userImage">
+        <img src="images/users.png">
+      </div>
+    </div>
+    <form id="registerUserForm">
+      <h3>Add New User</h3>
+      <input type="number" id="userId" placeholder="User ID" required>
+      <input type="text" id="userName" placeholder="Name" required>
+      <input type="text" id="userAddress" placeholder="Address" required>
+      <input type="text" id="userPhone" placeholder="Phone" required>
+      <input type="email" id="userEmail" placeholder="Email" required>
+      <button type="submit">Register User</button>
+    </form>
+  </section>
+  <section id="update-user-section">
+    <form id="updateUserForm">
+      <h3>Update User Information</h3>
+        <input type="number" id="updateUserId" placeholder="User ID" required>
+        <input type="text" id="updateUserName" placeholder="Updated Name">
+        <input type="text" id="updateUserAddress" placeholder="Updated Address">
+        <input type="text" id="updateUserPhone" placeholder="Updated Phone">
+        <input type="email" id="updateUserEmail" placeholder="Updated Email">
+        <button type="submit">Update User</button>
+    </form>
+</section>
+<section id="delete-user-section">
+  <form id="deleteUserForm">
+    <h3>Delete User</h3>
+      <input type="number" id="deleteUserId" placeholder="User ID" required>
+      <button type="submit">Delete User</button>
+  </form>
+</section>
+<!-- User Fines Section -->
+<section id="user-fines-section">
+  <h3>Check Fines</h3>
+  <input type="number" id="userId" placeholder="User ID" required>
+  <button id="checkFinesBtn">Check My Fines</button>
+  <p id="finesAmount">Total Fines: R0.00</p>
+</section>
+
+</div>
+
+<br><br>
+
+  <!-- Circulation Management Section -->
+  <div id="circulationLog">
+  <section id="circulation">
+    <div class="container">
+      <div class="circulationImage">
+        <img src="images/cm.jpg">
+      </div>
+      <div class="circulationText">
+        <h2>Circulation Management</h2>
+      </div>
+      <div class="circulationImage">
+        <img src="images/cm.jpg">
+      </div>
+    </div>
+
+    <form id="issueBookForm">
+      <h3>Issue Books</h3>
+      <input type="text" id="issueUserId" placeholder="User ID" required>
+      <input type="text" id="issueUserName" placeholder="User Name" required>
+      <input type="text" id="issueBookId" placeholder="Book ID" required>
+      <input type="date" id="dueDate" required>
+      <button type="submit">Issue Book</button>
+    </form>
+    <form id="returnBookForm">
+      <h3>Return Books</h3>
+      <input type="text" id="returnBookId" placeholder="Book ID" required>
+      <button type="submit">Return Book</button>
+    </form>
+  </section>
+  <section id="renew-book-section">
+    <h3>Renew Book</h3>
+    <form id="renewBookForm">
+        <input type="number" id="renewBookId" placeholder="Book ID" required>
+        <input type="number" id="renewAdditionalDays" placeholder="Additional Days" required>
+        <button type="submit">Renew Book</button>
+    </form>
+</section>
+</div>
+
+<br><br>
+
+  <!-- Search Section -->
+  <div id="searchResults">
+   <section id="search">
+    <div id="bookList">
+      <section id="book-management-section">
+        
+    <div class="container">
+      <div class="searchImage">
+        <img src="images/search.png">
+      </div>
+      <div class="searchText">
+        <h2>Search</h2>
+      </div>
+      <div class="searchImage">
+        <img src="images/search.png">
+      </div>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search books or users...">
+  </section>
+</div>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>
