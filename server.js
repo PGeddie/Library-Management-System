@@ -2,7 +2,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const app = express();
-const PORT = 3000;
+
 
 // Middleware to parse JSON data
 app.use(express.json());
@@ -19,6 +19,24 @@ db.connect(err => {
     if (err) throw err;
     console.log('Connected to MySQL database.');
 });
+
+db.connect((err) => {
+    if (err) {
+        console.error('Database connection failed:', err.stack);
+        return;
+    }
+    console.log('Connected to the database.');
+});
+
+// Endpoint to get all books
+app.get('/api/books', (req, res) => {
+    const query = 'SELECT * FROM books';
+    db.query(query, (error, results) => {
+        if (error) throw error;
+        res.json(results);
+    });
+});
+
 
 // --- User Management Routes ---
 
@@ -131,8 +149,105 @@ app.get('/users/:id/fines', (req, res) => {
     });
 });
 
+//email code
+const cron = require('node-cron');
+const nodemailer = require('nodemailer');
+require('dotenv').config(); // Load environment variables
+
+// Database connection setup (if not already defined in `server.js`)
+const db1 = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
+
+db.connect((err) => {
+    if (err) {
+        console.error("Database connection failed:", err);
+    } else {
+        console.log("Connected to the database.");
+    }
+});
+
+// Nodemailer setup
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+
+// Scheduled job to send due date reminders and overdue notices
+cron.schedule('0 0 * * *', () => {
+    console.log("Running daily notification check...");
+
+    // Due Date Reminder (Books due in 3 days)
+    const dueSoonQuery = `
+        SELECT users.email, books.title, borrow_records.due_date
+        FROM borrow_records
+        JOIN users ON users.id = borrow_records.user_id
+        JOIN books ON books.id = borrow_records.book_id
+        WHERE borrow_records.due_date = CURDATE() + INTERVAL 3 DAY
+    `;
+
+    db.query(dueSoonQuery, (err, dueSoonResults) => {
+        if (err) throw err;
+
+        dueSoonResults.forEach(user => {
+            const emailOptions = {
+                from: process.env.EMAIL_USER,
+                to: user.email,
+                subject: 'Library Due Date Reminder',
+                text: `Dear user, just a reminder that the book "${user.title}" is due on ${user.due_date}. Please return or renew it by then to avoid fines.`
+            };
+
+            transporter.sendMail(emailOptions, (error, info) => {
+                if (error) {
+                    console.error("Error sending due date reminder:", error);
+                } else {
+                    console.log('Due date reminder sent:', info.response);
+                }
+            });
+        });
+    });
+
+    // Overdue Notice (Books overdue)
+    const overdueQuery = `
+        SELECT users.email, books.title, borrow_records.due_date
+        FROM borrow_records
+        JOIN users ON users.id = borrow_records.user_id
+        JOIN books ON books.id = borrow_records.book_id
+        WHERE borrow_records.due_date < CURDATE() AND borrow_records.returned = 0
+    `;
+
+    db.query(overdueQuery, (err, overdueResults) => {
+        if (err) throw err;
+
+        overdueResults.forEach(user => {
+            const emailOptions = {
+                from: process.env.EMAIL_USER,
+                to: user.email,
+                subject: 'Library Overdue Notice',
+                text: `Dear user, the book "${user.title}" was due on ${user.due_date} and is now overdue. Please return it to avoid additional fines.`
+            };
+
+            transporter.sendMail(emailOptions, (error, info) => {
+                if (error) {
+                    console.error("Error sending overdue notice:", error);
+                } else {
+                    console.log('Overdue notice sent:', info.response);
+                }
+            });
+        });
+    });
+});
+
+
 
 // Start server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });

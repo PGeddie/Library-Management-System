@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="image">
+      <img src="images/books.jpg">
+    </div>
+    <div class="text">
+      <h1>Library Management System.</h1>
+    </div>
+    <div class="image">
+      <img src="images/books.jpg">
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="book.html">Book Catalog Management</a></li>
+        <li><a href="user.html">User Management</a></li>
+        <li><a href="circulation.html">Circulation Management</a></li>
+    </ul>
+</nav>
+
+  <!-- User Management Section -->
+  <div id="userList">
+  <section id="user-management">
+    <div class="container">
+      <div class="userImage">
+        <img src="images/users.png">
+      </div>
+      <div class="userText">
+        <h2>User Management</h2>
+      </div>
+      <div class="userImage">
+        <img src="images/users.png">
+      </div>
+    </div>
+    <form id="registerUserForm">
+      <h3>Add New User</h3>
+      <input type="number" id="userId" placeholder="User ID" required>
+      <input type="text" id="userName" placeholder="Name" required>
+      <input type="text" id="userAddress" placeholder="Address" required>
+      <input type="text" id="userPhone" placeholder="Phone" required>
+      <input type="email" id="userEmail" placeholder="Email" required>
+      <button onclick="registerFunction()" type="submit">Register User</button>
+    </form>
+  </section>
+  <section id="update-user-section">
+    <form id="updateUserForm">
+      <h3>Update User Information</h3>
+        <input type="number" id="updateUserId" placeholder="User ID" required>
+        <input type="text" id="updateUserName" placeholder="Updated Name">
+        <input type="text" id="updateUserAddress" placeholder="Updated Address">
+        <input type="text" id="updateUserPhone" placeholder="Updated Phone">
+        <input type="email" id="updateUserEmail" placeholder="Updated Email">
+        <button onclick="updateFunction()" type="submit">Update User</button>
+    </form>
+</section>
+<section id="delete-user-section">
+  <form id="deleteUserForm">
+    <h3>Delete User</h3>
+      <input type="number" id="deleteUserId" placeholder="User ID" required>
+      <button onclick="deleteFunction()" type="submit">Delete User</button>
+  </form>
+</section>
+<!-- User Fines Section -->
+<section id="user-fines-section">
+  <h3>Check Fines</h3>
+  <input type="number" id="userId" placeholder="User ID" required>
+  <button id="checkFinesBtn">Check My Fines</button>
+  <p id="finesAmount">Total Fines: R0.00</p>
+</section>
+
+</div>
+
+<br><br>
+
+  <!-- Search Section -->
+  <div id="searchResults">
+   <section id="search">
+    <div id="bookList">
+      <section id="book-management-section">
+        
+    <div class="container">
+      <div class="searchImage">
+        <img src="images/search.png">
+      </div>
+      <div class="searchText">
+        <h2>Search</h2>
+      </div>
+      <div class="searchImage">
+        <img src="images/search.png">
+      </div>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search books or users...">
+  </section>
+</div>
+
+  <script src="js/script.js"></script>
+
+  <!-- Book Catalog -->
+  <script>
+    function addFunction() {
+      alert("Book Added Succesfully");
+    }
+    </script>
+<script>
+  function bookUpdateFunction() {
+    alert("Book Updated Succesfully");
+  }
+  </script>
+<script>
+  function bookDeleteFunction() {
+    alert("Book Deleted Succesfully");
+  }
+  </script>
+
+  <!-- User Management -->
+  <script>
+    function registerFunction() {
+      alert("User Registered Succesfully");
+    }
+    </script>
+<script>
+  function updateFunction() {
+    alert("User Updated Succesfully");
+  }
+  </script>
+<script>
+  function deleteFunction() {
+    alert("User Deleted Succesfully");
+  }
+  </script>
+
+  <!-- Circulation Management -->
+  <script>
+    function returnFunction() {
+      alert("Book Returned Succesfully");
+    }
+    </script>
+<script>
+  function renewFunction() {
+    alert("Book Renewed Succesfully");
+  }
+  </script>
+<script>
+  function issueFunction() {
+    alert("Book Issued Succesfully");
+  }
+  </script>
+
+</body>
+</html>

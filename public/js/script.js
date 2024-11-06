@@ -7,7 +7,6 @@ const issuedBooks = [];
 // Function to handle adding a new book
 document.getElementById("addBookForm").addEventListener("submit", async (event) => {
   event.preventDefault();
-  const ID = document.getElementById("addBookID").value;
   const title = document.getElementById("addBookTitle").value;
   const author = document.getElementById("addBookAuthor").value;
   const isbn = document.getElementById("addBookISBN").value;
@@ -18,7 +17,7 @@ document.getElementById("addBookForm").addEventListener("submit", async (event) 
       const response = await fetch(`${baseUrl}/books/add`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ID, title, author, isbn, genre, year })
+          body: JSON.stringify({title, author, isbn, genre, year })
       });
       const result = await response.json();
       alert(result.message);

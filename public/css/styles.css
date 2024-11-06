@@ -27,12 +27,13 @@ form button {
   padding: 8px;
   width: 101%;
   font-family: Bookman Old Style;
+  background-color: #0351ace3;
 }
 
 #bookList, #userList, #circulationLog, #searchResults {
   border: 1px solid #ddd;
   padding: 10px;
-  background-color: #fff;
+  background-color: #9cc0ee;
 }
 
 #searchInput{
@@ -90,3 +91,47 @@ img {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+
+/* Basic reset */
+* {
+  margin: 20;
+  padding: 20;
+  box-sizing: border-box;
+}
+
+/* Navbar styling */
+.navbar {
+  background-color: rgb(92, 187, 241);
+  color: rgb(16, 108, 184);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand a {
+  font-size: 1.5em;
+  color: rgb(133, 229, 241);
+  text-decoration: none;
+}
+
+.navbar-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  text-align: center;
+}
+
+.navbar-links li a {
+  color: black;
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+.navbar-links li a:hover {
+  background-color: #0351ace3;
+  border-radius: 4px;
+}
+
+

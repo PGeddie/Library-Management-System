@@ -38,64 +38,46 @@
       <img src="images/bc.jpg">
     </div>
     <div class="bookText">
-      <h2>Book List</h2>
+      <h2>Book Catalog Management</h2>
     </div>
     <div class="bookImage">
       <img src="images/bc.jpg">
     </div>
   </div>
-    
-  <h1>Books Available in the Library</h1>
-   
+
+      <!-- Add Book Form -->
+      <form id="addBookForm">
+          <h3>Add New Book</h3>
+          <input type="text" id="addBookTitle" placeholder="Title" required>
+          <input type="text" id="addBookAuthor" placeholder="Author" required>
+          <input type="text" id="addBookISBN" placeholder="ISBN" required>
+          <input type="text" id="addBookGenre" placeholder="Genre" required>
+          <input type="number" id="addBookYear" placeholder="Publication Year" required>
+          <button onclick="addFunction()" type="submit">Add Book</button>
+      </form>
+
+      <!-- Update Book Form -->
+      <form id="updateBookForm">
+          <h3>Update Book Information</h3>
+          <input type="number" id="updateBookId" placeholder="Book ID" required>
+          <input type="text" id="updateBookTitle" placeholder="Updated Title">
+          <input type="text" id="updateBookAuthor" placeholder="Updated Author">
+          <input type="text" id="updateBookISBN" placeholder="Updated ISBN">
+          <input type="text" id="updateBookGenre" placeholder="Updated Genre">
+          <input type="number" id="updateBookYear" placeholder="Updated Publication Year">
+          <button onclick="bookUpdateFunction()" type="submit">Update Book</button>
+      </form>
+
+      <!-- Delete Book Form -->
+      <form id="deleteBookForm">
+          <h3>Delete Book</h3>
+          <input type="number" id="deleteBookId" placeholder="Book ID" required>
+          <button onclick="bookDeleteFunction()" type="submit">Delete Book</button>
+      </form>
   </section>
-  <table id="books-table" border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>ISBN</th>
-            <th>Genre</th>
-            <th>Publication Year</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Data will be inserted here by JavaScript -->
-    </tbody>
-</table>
-
-<script>
-    // Fetch books data and display in the table
-    async function fetchBooks() {
-        try {
-            const response = await fetch('http://localhost:3000/api/books');
-            const books = await response.json();
-            const tableBody = document.getElementById('books-table').getElementsByTagName('tbody')[0];
-            tableBody.innerHTML = ''; // Clear any existing rows
-
-            books.forEach(book => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${book.id}</td>
-                    <td>${book.title}</td>
-                    <td>${book.author}</td>
-                    <td>${book.isbn}</td>
-                    <td>${book.genre}</td>
-                    <td>${book.publication_year}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        } catch (error) {
-            console.error('Error fetching books:', error);
-        }
-    }
-
-    // Call the function to fetch and display books on page load
-    window.onload = fetchBooks;
-</script>
   </div>
 
-<br><br>
+ <br><br>
 
   <!-- Search Section -->
   <div id="searchResults">
@@ -170,37 +152,6 @@
     alert("Book Issued Succesfully");
   }
   </script>
-
-  
-<script>
-  // Fetch books data and display in the table
-  async function fetchBooks() {
-      try {
-          const response = await fetch('http://localhost:3000/api/books');
-          const books = await response.json();
-          const tableBody = document.getElementById('books-table').getElementsByTagName('tbody')[0];
-          tableBody.innerHTML = ''; // Clear any existing rows
-
-          books.forEach(book => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                  <td>${book.id}</td>
-                  <td>${book.title}</td>
-                  <td>${book.author}</td>
-                  <td>${book.isbn}</td>
-                  <td>${book.genre}</td>
-                  <td>${book.publication_year}</td>
-              `;
-              tableBody.appendChild(row);
-          });
-      } catch (error) {
-          console.error('Error fetching books:', error);
-      }
-  }
-
-  // Call the function to fetch and display books on page load
-  window.onload = fetchBooks;
-</script>
 
 </body>
 </html>
